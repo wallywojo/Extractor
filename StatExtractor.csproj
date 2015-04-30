@@ -209,6 +209,7 @@
     <Content Include="Gens_Stat_Extractor.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Gens_Stat_Extractor_Orig.py" />
     <Content Include="nhl94.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
