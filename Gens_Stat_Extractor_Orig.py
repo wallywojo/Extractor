@@ -17,7 +17,7 @@
 
 # Useful references:
 # http://www.nhl94.com/html/editing/gens32-savestate.htm
-#h ttp://www.nhl94.com/html/editing/edit_bin_player_info.php
+# http://www.nhl94.com/html/editing/edit_bin_player_info.php
 # Fun fact: ROM credits start at 5778/22392
 
 import mmap, csv, sys, getopt
@@ -200,7 +200,7 @@ def getTeamPlayersFromROM(ROM, team, teamOffsets):
         keepReading = True
 
         # for 30 team rom this is required
-        if bFirst == True:
+        if bFirst == True and len(ROM) != 1048576:
             byteCounter += 1
             bFirst = False
             
@@ -964,32 +964,32 @@ def processPlayerStats(playerStats,players):
 ################################################################################
 
 def main(argv):
-    #try:
-    #    opts, args = getopt.getopt(argv,"hs:r:",["sfile=","rfile="])
-        #print "".join(argv)
-    #except getopt.GetoptError:
-    #    print ('Error: Gens_Stat_Extractor.py -s <savefile> -r <romfile>')
-    #    sys.exit(2)
-    #for opt, arg in opts:
-    #    if opt == '-h':
-    #        print ('Gens_Stat_Extractor.py -s <savefile> -r <romfile>')
-    #        sys.exit()
-    #    elif opt in ("-s", "--sfile"):
-    #        saveStateFile = arg
-    #    elif opt in ("-r", "--rfile"):
-    #        ROMFile = arg
+    try:
+        opts, args = getopt.getopt(argv,"hs:r:",["sfile=","rfile="])
+        print "".join(argv)
+    except getopt.GetoptError:
+        print ('Error: Gens_Stat_Extractor.py -s <savefile> -r <romfile>')
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print ('Gens_Stat_Extractor.py -s <savefile> -r <romfile>')
+            sys.exit()
+        elif opt in ("-s", "--sfile"):
+            saveStateFile = arg
+        elif opt in ("-r", "--rfile"):
+            ROMFile = arg
     
     print ('starting the export process; examining rom file')
     # Get the save state data
-    saveStateFile = r"C:\Users\wojciecw\Documents\apps\wgens211\Gens\WBFClassic_le.gs7"
-    #saveStateFile = r"C:\Users\wojciecw\Documents\apps\wgens211\GensPlus\bak\nhl94.gs6"
+    #saveStateFile = r"C:\Users\wojciecw\Documents\apps\wgens211\Gens\WBFClassic_le.gs7"
+    #saveStateFile = r"C:\Users\wojciecw\Documents\apps\wgens211\GensPlus\Save\nhl94.gs7"
     saveStateGet = open(saveStateFile,'r+')
     saveState = mmap.mmap(saveStateGet.fileno(),0)
 
     # Get the ROM data
-    #ROMFile = r"C:\Users\wojciecw\Documents\apps\wgens211\Gens\roms\nhl94_playoffs.bin"
+    #ROMFile = r"C:\Users\wojciecw\Documents\apps\wgens211\GensPlus\roms\nhl94.bin"
     #ROMFile = r"C:\Users\wojciecw\Documents\apps\wgens211\roms\NHL94.2015_Skip.bin"
-    ROMFile = r"C:\Users\wojciecw\Documents\apps\wgens211\Gens\roms\WBFClassic_le.bin"
+    #ROMFile = r"C:\Users\wojciecw\Documents\apps\wgens211\Gens\roms\WBFClassic_le.bin"
     ROMFileGet = open(ROMFile,'r+')
     ROM = mmap.mmap(ROMFileGet.fileno(),0)
 

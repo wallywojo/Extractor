@@ -22,11 +22,16 @@ namespace StatExtractor
 
         private void cmdPreview_Click(object sender, EventArgs e)
         {
+            string szPyScript;
+            if (rTeam28.Checked == true)
+                szPyScript = "Gens_Stat_Extractor_Orig.py";
+            else
+                szPyScript = "Gens_Stat_Extractor.py";
 
             ProcessStartInfo myInfo = new ProcessStartInfo();
 
             myInfo.FileName = Environment.GetEnvironmentVariable("PYTHON_PATH")  + "\\python.exe";
-            myInfo.Arguments = "Gens_Stat_Extractor.py -s " + GlobalVar.sSave.ToString() + " -r " + GlobalVar.sRom.ToString();
+            myInfo.Arguments = szPyScript.ToString() + " -s " + GlobalVar.sSave.ToString() + " -r " + GlobalVar.sRom.ToString();
             myInfo.UseShellExecute = false;
             myInfo.CreateNoWindow = true;
             
